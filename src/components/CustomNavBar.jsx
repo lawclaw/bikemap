@@ -1,10 +1,12 @@
 import React from 'react'
-import { Nav, Navbar } from 'react-bootstrap'
+import { Container, Nav, Navbar } from 'react-bootstrap'
 
 function CustomNavBar (props) {
   return (
-      <Navbar>
-        <Nav>
+      <Navbar bg={'dark'} variant={'dark'}>
+          <Container>
+
+          <Nav>
             <Navbar.Brand href=".">BikeMap</Navbar.Brand>
             <Nav.Link href={'.'}>
                 Home
@@ -16,6 +18,8 @@ function CustomNavBar (props) {
                 Search
             </Nav.Link>
         </Nav>
+          </Container>
+
       </Navbar>
   )
 }
