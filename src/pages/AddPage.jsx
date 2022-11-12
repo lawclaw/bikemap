@@ -26,7 +26,7 @@ function AddPage (props) {
         console.log(req);
         axios({
             method: 'post',
-            url: 'http://localhost:3000/write-pins',
+            url: import.meta.env.VITE_BACKEND_LINK+'/write-pins',
             data: req,
           })
     }
