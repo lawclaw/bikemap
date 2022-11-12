@@ -25,14 +25,16 @@ function ExampleMapPicker (props) {
 
   return (
         <>
+            <label>Latitude:</label>
+            <input type='text' value={location.lat} disabled/>
+            <label>Longitude:</label>
+            <input type='text' value={location.lng} disabled/>
             <button onClick={handleResetLocation}>Reset Location</button>
-            <label>Latitute:</label><input type='text' value={location.lat} disabled/>
-            <label>Longitute:</label><input type='text' value={location.lng} disabled/>
 
             <MapPicker defaultLocation={defaultLocation}
                        zoom={zoom}
                        mapTypeId="roadmap"
-                       style={{ height: '700px' }}
+                       style={{ height: '50vh' }}
                        onChangeLocation={handleChangeLocation}
                        onChangeZoom={handleChangeZoom}
                        apiKey='AIzaSyCSMHRIorKn8cu2RmobustnTx664WI_HuI'/>
