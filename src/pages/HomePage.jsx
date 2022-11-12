@@ -26,7 +26,7 @@ function HomePage (props) {
     const loadPositions = async () => {
       axios({
         method: 'get',
-        url: 'http://localhost:3000/read-pins'
+        url: import.meta.env.VITE_BACKEND_LINK+'/read-pins'
       })
         .then(function (response) {
           console.log(response.data.documents)
