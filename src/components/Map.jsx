@@ -53,6 +53,27 @@ function Map(props) {
     }
   }, [ref, map]);
 
+  // useDeepCompareEffectForMaps(() => {
+  //   if (map) {
+  //     map.setOptions(options);
+  //   }
+  // }, [map, options]);
+
+  // useEffect(() => {
+  //   if (map) {
+  //     ["click", "idle"].forEach((eventName) =>
+  //       google.maps.event.clearListeners(map, eventName)
+  //     );
+  //     if (onClick) {
+  //       map.addListener("click", onClick);
+  //     }
+  
+  //     if (onIdle) {
+  //       map.addListener("idle", () => onIdle(map));
+  //     }
+  //   }
+  // }, [map, onClick, onIdle]);
+  
   return (
     <div ref={ref} style={{width:'100%',height:'400px',margin:'auto', overflow: "visible"}}/>
   )
