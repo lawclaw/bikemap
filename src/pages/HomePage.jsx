@@ -5,6 +5,9 @@ import { Wrapper } from '@googlemaps/react-wrapper'
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 import axios from 'axios'
+import { useRecoilState } from 'recoil'
+import { searchQuery } from '../recoil/states.js'
+import Geocode from 'react-geocode'
 
 const GOOGLE_API_KEY = import.meta.env.VITE_GOOGLE_API_KEY
 
@@ -14,6 +17,21 @@ function HomePage (props) {
   const [modalTitle, setModalTitle] = useState('')
   const [modalText, setModalText] = useState('')
   const handleModalClose = () => setShowModal(false)
+
+  const [search, setSearch] = useRecoilState(searchQuery)
+
+  useEffect(async () => {
+    console.log(search)
+    Geocode.fromAddress('Eiffel Tower').then(
+      (response) => {
+        const { lat, lng } = response.results[0].geometry.location
+        console.log(lat, lng)
+      },
+      (error) => {
+        console.error(error)
+      }
+    )
+  }, [search])
 
   const handleModalShow = (title, desc) => {
     setModalTitle(title)
@@ -26,7 +44,7 @@ function HomePage (props) {
     const loadPositions = async () => {
       axios({
         method: 'get',
-        url: import.meta.env.VITE_BACKEND_LINK+'/read-pins'
+        url: import.meta.env.VITE_BACKEND_LINK + '/read-pins'
       })
         .then(function (response) {
           console.log(response.data.documents)
@@ -34,6 +52,10 @@ function HomePage (props) {
         })
     }
     loadPositions()
+  }, [])
+
+  useEffect(() => {
+    Geocode.setApiKey(GOOGLE_API_KEY)
   }, [])
 
   const processedPos =

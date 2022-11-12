@@ -3,10 +3,9 @@ import MapPicker from 'react-google-map-picker'
 
 const DefaultZoom = 10
 
-function ExampleMapPicker ({location, setLocation, DefaultLocation}) {
+function ExampleMapPicker ({ location, setLocation, DefaultLocation }) {
   const [defaultLocation, setDefaultLocation] = useState(DefaultLocation)
 
-  
   const [zoom, setZoom] = useState(DefaultZoom)
 
   function handleChangeLocation (lat, lng) {
