@@ -35,7 +35,7 @@ function ExampleMapPicker (props) {
                        style={{ height: '700px' }}
                        onChangeLocation={handleChangeLocation}
                        onChangeZoom={handleChangeZoom}
-                       apiKey='AIzaSyCSMHRIorKn8cu2RmobustnTx664WI_HuI'/>
+                       apiKey={import.meta.env.VITE_GOOGLE_API_KEY}/>
         </>
   )
 }

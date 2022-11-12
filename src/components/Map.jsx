@@ -42,19 +42,15 @@ function Map(props) {
   const [map, setMap] = React.useState();
 
   useEffect(() => {
-    console.log(GOOGLE_API_KEY)
     if (ref.current && !map) {
       setMap(new window.google.maps.Map(ref.current, {
         center: {
-          lat: 0,
-          lng: 0,
+          lat: 51.757795855861815,
+          lng: -1.2230595517611809,
         },
-        zoom: 4,
+        zoom: 10,
       }));
-      console.log("if clause")
     }
-    console.log(map);
-    console.log(ref);
   }, [ref, map]);
 
   return (
