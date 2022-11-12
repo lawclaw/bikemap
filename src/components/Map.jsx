@@ -1,5 +1,4 @@
 import React,{useEffect} from 'react';
-import GoogleMapReact from 'google-map-react';
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
 
 const GOOGLE_API_KEY = import.meta.env.VITE_GOOGLE_API_KEY;
