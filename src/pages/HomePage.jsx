@@ -25,15 +25,15 @@ function HomePage (props) {
       }
     ]);
   },[]);
+
+  // console.log(positions);
   
   return (
       <>
         <div>Home page</div>
         <Wrapper apiKey={GOOGLE_API_KEY} render={render}>
         <Map>
-          {positions.map((latLng,i)=>{
-            <Marker key={i} position={latLng} />
-          })}
+          {positions.map((latLng,i)=><Marker key={i} position={latLng} />)}
         </Map>
       </Wrapper>
         

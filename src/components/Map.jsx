@@ -36,7 +36,9 @@ const render = (status) => {
 //   );
 // }
 
-function Map(props) {
+function Map({
+  children,
+}) {
   const ref = React.useRef(null);
   const [map, setMap] = React.useState();
 
@@ -73,9 +75,20 @@ function Map(props) {
   //   }
   // }, [map, onClick, onIdle]);
   
+  // console.log(children);
   return (
-    <div ref={ref} style={{width:'100%',height:'400px',margin:'auto', overflow: "visible"}}/>
-  )
+    <>
+      <div ref={ref} style={{width:'100%',height:'400px',margin:'auto', overflow: "visible"}}/>
+      {React.Children.map(children, (child) => {
+        if (React.isValidElement(child)) {
+          // console.log("element cloned")
+          // set the map prop on the child component
+          // @ts-ignore
+          return React.cloneElement(child, { map });
+        }
+      })}
+    </>
+    )
 } 
 
 export default Map

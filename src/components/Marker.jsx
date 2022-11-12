@@ -15,6 +15,7 @@ const Marker = (options) => {
         }
       };
     }, [marker]);
+    
     React.useEffect(() => {
       if (marker) {
         marker.setOptions(options);
