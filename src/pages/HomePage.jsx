@@ -5,6 +5,7 @@ import { Wrapper } from '@googlemaps/react-wrapper'
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 import axios from 'axios'
+import ReactHtmlParser from 'react-html-parser'; 
 
 const GOOGLE_API_KEY = import.meta.env.VITE_GOOGLE_API_KEY
 
@@ -73,7 +74,7 @@ function HomePage (props) {
           <Modal.Header closeButton>
             <Modal.Title>{modalTitle}</Modal.Title>
           </Modal.Header>
-          <Modal.Body>{modalText}</Modal.Body>
+          <Modal.Body>{ReactHtmlParser(modalText)}</Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleModalClose}>
               Close
