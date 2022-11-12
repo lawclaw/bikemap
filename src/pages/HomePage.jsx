@@ -12,10 +12,12 @@ function HomePage (props) {
   const [loaded, setLoaded] = useState(false)
   const [positions, setPositions] = useState([])
   const [showModal, setShowModal] = useState(false)
+  const [modalTitle, setModalTitle] = useState('')
   const [modalText, setModalText] = useState('')
   const handleModalClose = () => setShowModal(false)
 
-  const handleModalShow = (desc) => {
+  const handleModalShow = (title,desc) => {
+    setModalTitle(title)
     setModalText(desc)
     setShowModal(true)
     // console.log("show");
@@ -64,19 +66,21 @@ function HomePage (props) {
       }
     })
 
+  console.log(processedPos);
+
   return (
       <>
         <Wrapper apiKey={GOOGLE_API_KEY}>
           <Map>
-            {processedPos.map(({ position, descriptions }, i) =>
-              <Marker key={i} position={position} icon="warning.png" style={{ zIndex: '999' }} onClick={() => { handleModalShow(descriptions) }}/>
+            {processedPos.map(({ position, title, description }, i) =>
+              <Marker key={i} position={position} icon="warning.png" style={{ zIndex: '999' }} onClick={() => { handleModalShow(title,description) }}/>
             )}
           </Map>
         </Wrapper>
 
         <Modal show={showModal} onHide={handleModalClose}>
           <Modal.Header closeButton>
-            <Modal.Title>Modal heading</Modal.Title>
+            <Modal.Title>{modalTitle}</Modal.Title>
           </Modal.Header>
           <Modal.Body>{modalText}</Modal.Body>
           <Modal.Footer>
