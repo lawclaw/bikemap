@@ -23,20 +23,20 @@ function CustomNavBar (props) {
               </Nav.Link>
             </Col>
             <Col>
-              <Navbar.Brand href="." style={{}}>BikeSafe</Navbar.Brand>
+              <Navbar.Brand href="." style={{ position: "relative", top: "7px"}}>BikeSafe</Navbar.Brand>
             </Col>
             <Col>
-              <Nav.Link href={'.'}>
+              <Nav.Link href={'.'} style={{ position: "relative", top: "3px"}}>
                 Home
               </Nav.Link>
             </Col>
             <Col me='auto' xs={'auto'}>
-              <Nav.Link href={'/add'}>
+              <Nav.Link href={'/add'} style={{ position: "relative", top: "3px"}}>
                 Add Caution
               </Nav.Link>
             </Col>
             <Col>
-              <Form>
+              <Form style={{ position: "relative", top: "3px"}}>
                 <Form.Control onKeyDown={e => {
                   if (e.key === 'Enter') {
                     handleSubmit()

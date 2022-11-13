@@ -21,3 +21,14 @@ export const mapLng = atom({
   key: 'mapLng',
   default: -1.2230595517611809
 })
+
+export const deviceIdState = atom({
+  key: 'deviceId',
+  default: localStorage.getItem('deviceId') || genId()
+})
+
+function genId () {
+  const genId = Math.floor(Math.random() * 1000000000);
+  localStorage.setItem('deviceId', genId)
+  return genId
+}
