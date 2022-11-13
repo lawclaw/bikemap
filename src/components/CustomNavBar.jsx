@@ -18,7 +18,12 @@ function CustomNavBar (props) {
         <Nav>
           <Row>
             <Col>
-              <Navbar.Brand href=".">BikeMap</Navbar.Brand>
+              <Nav.Link href={'.'}>
+                <img src="/helmet_blue.png" alt="" style={{height: '32px', width: '32px'}}/>
+              </Nav.Link>
+            </Col>
+            <Col>
+              <Navbar.Brand href="." style={{}}>BikeSafe</Navbar.Brand>
             </Col>
             <Col>
               <Nav.Link href={'.'}>
