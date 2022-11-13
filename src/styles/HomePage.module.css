@@ -4,8 +4,14 @@
     color: #777;
 }
 
+.modal_footer {
+    border: 0 none;
+    width: 300px;
+
+}
+
 .vote{
     color: #777;
     text-align: center;
-
+    align-self: center;
 }

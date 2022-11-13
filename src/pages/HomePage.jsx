@@ -110,21 +110,21 @@ function HomePage (props) {
         </Map>
       </Wrapper>
 
-      <Modal show={showModal} onHide={handleModalClose} className="modal-lg">
+      <Modal show={showModal} onHide={handleModalClose} style={{ height: 'auto' }}>
         <Modal.Header closeButton>
           <Modal.Title>{modalTitle}</Modal.Title>
         </Modal.Header>
-        <Row>
+        <Row style={{ height: '300px' }}>
           <Col xs="10" md="10">
             <Modal.Body>{ReactHtmlParser(modalText)}</Modal.Body>
           </Col>
-          <Col xs="2" md="2" className={styles.vote}>
+          <Col xs="5" md="2" className={styles.vote}>
             <FontAwesomeIcon icon={faSortUp} className={styles.favicon} />
             <h3>{modalVote}</h3>
             <FontAwesomeIcon icon={faSortDown} className={styles.favicon} />
           </Col>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={handleModalClose}>
+          <Modal.Footer className={styles.modal_footer}>
+            <Button variant="secondary" onClick={handleModalClose} style={{ marginRight: '12px' }}>
                 Close
             </Button>
           </Modal.Footer>
