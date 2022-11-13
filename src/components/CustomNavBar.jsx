@@ -13,44 +13,44 @@ function CustomNavBar (props) {
   }
 
   return (
-      <Navbar variant={'dark'} style={{backgroundColor: "#03a7cc"}}>
-          <Container>
-          <Nav>
-            <Row>
-              <Col>
-            <Navbar.Brand href=".">BikeMap</Navbar.Brand>
-              </Col>
-              <Col>
-            <Nav.Link href={'.'}>
+    <Navbar variant={'dark'} style={{ backgroundColor: '#03a7cc' }}>
+      <Container>
+        <Nav>
+          <Row>
+            <Col>
+              <Navbar.Brand href=".">BikeMap</Navbar.Brand>
+            </Col>
+            <Col>
+              <Nav.Link href={'.'}>
                 Home
-            </Nav.Link>
-              </Col>
-              <Col me='auto' xs={'auto'}>
-            <Nav.Link href={'/add'}>
+              </Nav.Link>
+            </Col>
+            <Col me='auto' xs={'auto'}>
+              <Nav.Link href={'/add'}>
                 Add Caution
-            </Nav.Link>
-              </Col>
-              <Col>
-                <Form>
+              </Nav.Link>
+            </Col>
+            <Col>
+              <Form>
                 <Form.Control onKeyDown={e => {
                   if (e.key === 'Enter') {
                     handleSubmit()
                     e.preventDefault()
                   }
                 }} onChange={(e) => setSearch(e.target.value)} placeholder={'Search for location'} style={{ width: 'auto' }}/>
-                </Form>
-              </Col>
-              <Col>
-                <Button type={'submit'} onClick={handleSubmit}>
+              </Form>
+            </Col>
+            <Col>
+              <Button type={'submit'} onClick={handleSubmit}>
                   Search
-                </Button>
-              </Col>
-            </Row>
+              </Button>
+            </Col>
+          </Row>
 
-          </Nav>
-          </Container>
+        </Nav>
+      </Container>
 
-      </Navbar>
+    </Navbar>
   )
 }
 
