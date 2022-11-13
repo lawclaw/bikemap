@@ -32,7 +32,6 @@ function HomePage (props) {
   const [lat, setLat] = useRecoilState(mapLat)
   const [lng, setLng] = useRecoilState(mapLng)
 
-  const handleModalShow = (title, desc) => {
   const handleModalShow = (title, desc, vote) => {
     setModalTitle(title)
     setModalText(desc)
@@ -114,24 +113,24 @@ function HomePage (props) {
         </Map>
       </Wrapper>
 
-      <Modal show={showModal} onHide={handleModalClose}>
+      <Modal show={showModal} onHide={handleModalClose} className="modal-lg">
+        <Modal.Header closeButton>
+          <Modal.Title>{modalTitle}</Modal.Title>
+        </Modal.Header>
         <Row>
-          <Modal.Header closeButton>
-            <Modal.Title>{modalTitle}</Modal.Title>
-          </Modal.Header>
-          <Col xs="10" md="11">
+          <Col xs="10" md="10">
             <Modal.Body>{ReactHtmlParser(modalText)}</Modal.Body>
           </Col>
-          <Col xs="2" md="1" className={styles.vote}>
+          <Col xs="2" md="2" className={styles.vote}>
             <FontAwesomeIcon icon={faSortUp} className={styles.favicon} />
             <h3>{modalVote}</h3>
             <FontAwesomeIcon icon={faSortDown} className={styles.favicon} />
-            <Modal.Footer>
-              <Button variant="secondary" onClick={handleModalClose}>
-                  Close
-              </Button>
-            </Modal.Footer>
           </Col>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleModalClose}>
+                Close
+            </Button>
+          </Modal.Footer>
         </Row>
 
 
