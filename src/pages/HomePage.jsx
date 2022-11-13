@@ -15,13 +15,19 @@ import styles from '../styles/HomePage.module.css'
 
 const GOOGLE_API_KEY = import.meta.env.VITE_GOOGLE_API_KEY
 
+const modalStatusString = {
+  "prepare" : "Click on the arrows on the right to vote!",
+
+}
 function HomePage (props) {
   const [positions, setPositions] = useState([])
   const [showModal, setShowModal] = useState(false)
   const [modalTitle, setModalTitle] = useState('')
   const [modalText, setModalText] = useState('')
   const [deviceId, setDeviceId] = useRecoilState(deviceIdState)
-  const [modalVote, setModalVote] = useState(34)
+  const [modalVote, setModalVote] = useState(0)
+  const [modalId, setModalId] = useState("")
+  const [modalStatus,setModalStatus] = useState("prepare")
 
   const handleModalClose = () => setShowModal(false)
 
@@ -31,11 +37,13 @@ function HomePage (props) {
   const [lat, setLat] = useRecoilState(mapLat)
   const [lng, setLng] = useRecoilState(mapLng)
 
-  const handleModalShow = (title, desc, vote) => {
+  const handleModalShow = (title, desc, vote, id) => {
     setModalTitle(title)
     setModalText(desc)
     setShowModal(true)
-    setModalVote(34)
+    setModalVote(vote)
+    setModalId(id)
+    setModalStatus("prepare")
   }
 
   useEffect(async () => {
@@ -98,14 +106,31 @@ function HomePage (props) {
     }
   }
 
+  const voteUp = (id) => {
+    axios({
+      method: 'get',
+      url: 'http://localhost:3000/vote-pin?id='+id+"&deviceId="+deviceId,
+    }).then(res => {
+      console.log(res.data)
+      setModalStatus(res.data.status)
+      if (res.data.document){
+        setModalVote(res.data.document.voteNum)
+      }
+    })
+  }
+
+  const voteDown = (id) => {
+    // TODO
+  }
+
   console.log(deviceId)
 
   return (
     <>
       <Wrapper apiKey={GOOGLE_API_KEY}>
         <Map>
-          {processedPos.map(({ type, position, title, description, voteNumber }, i) =>
-            <Marker key={i} position={position} icon={getIcon(type)} style={{ zIndex: '999' }} onClick={() => { handleModalShow(title, description, voteNumber) }}/>
+          {processedPos.map(({ type, position, title, description, voteNum, id }, i) =>
+            <Marker key={i} position={position} icon={getIcon(type)} style={{ zIndex: '999' }} onClick={() => { handleModalShow(title, description, voteNum, id) }}/>
           )}
         </Map>
       </Wrapper>
@@ -116,12 +141,12 @@ function HomePage (props) {
         </Modal.Header>
         <Row>
           <Col xs="10" md="10">
-            <Modal.Body>{ReactHtmlParser(modalText)}</Modal.Body>
+            <Modal.Body>{ReactHtmlParser(modalText)}<br />{modalStatus}</Modal.Body>
           </Col>
           <Col xs="2" md="2" className={styles.vote}>
-            <FontAwesomeIcon icon={faSortUp} className={styles.favicon} />
+            <FontAwesomeIcon icon={faSortUp} className={styles.favicon} onClick={()=>voteUp(modalId)}/>
             <h3>{modalVote}</h3>
-            <FontAwesomeIcon icon={faSortDown} className={styles.favicon} />
+            <FontAwesomeIcon icon={faSortDown} className={styles.favicon}onClick={()=>voteDown(modalId)}/>
           </Col>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleModalClose}>
