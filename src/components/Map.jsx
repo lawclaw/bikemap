@@ -29,10 +29,9 @@ function Map ({ children }) {
       zoom: 13
     }))
   }, [lat, lng])
-
   return (
     <>
-      <div ref={ref} style={{ width: '100%', height: '100vh', margin: 'auto', overflow: 'visible' }}/>
+      <div ref={ref} style={{ width: '100%', height: '94vh', margin: 'auto', overflow: 'visible' }}/>
       {React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
           // console.log("element cloned")

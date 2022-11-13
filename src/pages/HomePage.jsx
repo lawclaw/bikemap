@@ -4,12 +4,11 @@ import Marker from '../components/Marker'
 import { Wrapper } from '@googlemaps/react-wrapper'
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
-import {Row, Col} from 'react-bootstrap'
+import { Row, Col } from 'react-bootstrap'
 import axios from 'axios'
 import ReactHtmlParser from 'react-html-parser'
 import { useRecoilState } from 'recoil'
-import { mapLat, mapLng, searchedState, searchQuery } from '../recoil/states.js'
-import { deviceIdState } from '../recoil/states'
+import { mapLat, mapLng, searchedState, searchQuery, deviceIdState } from '../recoil/states.js'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons'
 import styles from '../styles/HomePage.module.css'
@@ -36,9 +35,7 @@ function HomePage (props) {
     setModalTitle(title)
     setModalText(desc)
     setShowModal(true)
-    // setModalVote(vote)
     setModalVote(34)
-    // console.log("show");
   }
 
   useEffect(async () => {
@@ -132,7 +129,6 @@ function HomePage (props) {
             </Button>
           </Modal.Footer>
         </Row>
-
 
       </Modal>
     </>
