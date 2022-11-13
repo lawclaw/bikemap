@@ -17,6 +17,8 @@ const GOOGLE_API_KEY = import.meta.env.VITE_GOOGLE_API_KEY
 
 const modalStatusString = {
   "prepare" : "Click on the arrows on the right to vote!",
+  "vote_exists" : "You have already voted.",
+  "vote_accepted" : "You have successfully voted.",
 
 }
 function HomePage (props) {
@@ -135,18 +137,18 @@ function HomePage (props) {
         </Map>
       </Wrapper>
 
-      <Modal show={showModal} onHide={handleModalClose} style={{ height: 'auto' }}>
+      <Modal show={showModal} onHide={handleModalClose} size="lg">
         <Modal.Header closeButton>
           <Modal.Title>{modalTitle}</Modal.Title>
         </Modal.Header>
-        <Row style={{ height: '300px' }}>
+        <Row>
           <Col xs="7" md="10">
-            <Modal.Body>{ReactHtmlParser(modalText)}<br />{modalStatus}</Modal.Body>
+            <Modal.Body>{ReactHtmlParser(modalText)}<br />{modalStatusString[modalStatus]}</Modal.Body>
           </Col>
-          <Col xs="5" md="2" className={styles.vote}>
+          <Col xs="5" md="2" className={"my-3 "+styles.vote}>
             <FontAwesomeIcon icon={faSortUp} className={styles.favicon} onClick={()=>voteUp(modalId)}/>
             <h3>{modalVote}</h3>
-            <FontAwesomeIcon icon={faSortDown} className={styles.favicon}onClick={()=>voteDown(modalId)}/>
+            {/* <FontAwesomeIcon icon={faSortDown} className={styles.favicon}onClick={()=>voteDown(modalId)}/> */}
           </Col>
           <Modal.Footer className={styles.modal_footer}>
             <Button variant="secondary" onClick={handleModalClose} style={{ marginRight: '12px' }}>
