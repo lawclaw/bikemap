@@ -19,7 +19,7 @@ function CustomNavBar (props) {
           <Row>
             <Col>
               <Nav.Link href={'.'}>
-                <img src="/helmet_blue.png" alt="" style={{height: '32px', width: '32px'}}/>
+                <img src="/helmet_blue.png" alt="" style={{ height: '32px', width: '32px' }}/>
               </Nav.Link>
             </Col>
             <Col>
