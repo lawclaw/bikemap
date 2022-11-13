@@ -4,9 +4,9 @@ import HomePage from './pages/HomePage.jsx'
 import AddPage from './pages/AddPage.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { RecoilRoot } from 'recoil'
-import { Image, Tab, Tabs } from 'react-bootstrap'
 import '../node_modules/react-grid-layout/css/styles.css'
 import '../node_modules/react-resizable/css/styles.css'
+import CustomNavBar from './components/CustomNavBar.jsx'
 
 function App () {
   return (
