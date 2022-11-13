@@ -1,22 +1,34 @@
 import React, { useEffect } from 'react'
+import { useRecoilState } from 'recoil'
+import { mapLat, mapLng } from '../recoil/states.js'
 
-function Map ({
-  children
-}) {
+function Map ({ children }) {
   const ref = React.useRef(null)
   const [map, setMap] = React.useState()
+  const [lat, setLat] = useRecoilState(mapLat)
+  const [lng, setLng] = useRecoilState(mapLng)
 
   useEffect(() => {
     if (ref.current && !map) {
       setMap(new window.google.maps.Map(ref.current, {
         center: {
-          lat: 51.757795855861815,
-          lng: -1.2230595517611809
+          lat,
+          lng
         },
         zoom: 13
       }))
     }
   }, [ref, map])
+
+  useEffect(() => {
+    setMap(new window.google.maps.Map(ref.current, {
+      center: {
+        lat,
+        lng
+      },
+      zoom: 13
+    }))
+  }, [lat, lng])
 
   return (
     <>

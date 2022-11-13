@@ -1,10 +1,16 @@
 import React from 'react'
 import { Col, Container, Form, Nav, Navbar, Row } from 'react-bootstrap'
 import { useRecoilState } from 'recoil'
-import { searchQuery } from '../recoil/states.js'
+import { searchedState, searchQuery } from '../recoil/states.js'
+import Button from 'react-bootstrap/Button'
 
 function CustomNavBar (props) {
   const [search, setSearch] = useRecoilState(searchQuery)
+  const [searched, setSearched] = useRecoilState(searchedState)
+
+  const handleSubmit = () => {
+    setSearched(true)
+  }
 
   return (
       <Navbar bg={'dark'} variant={'dark'}>
@@ -26,13 +32,18 @@ function CustomNavBar (props) {
               </Col>
               <Col>
                 <Form>
-                <Form.Control onChange={(e) => setSearch(e.target.value)} placeholder={'Search for location'} style={{ width: 'auto' }}/>
+                <Form.Control onKeyDown={e => {
+                  if (e.key === 'Enter') {
+                    handleSubmit()
+                    e.preventDefault()
+                  }
+                }} onChange={(e) => setSearch(e.target.value)} placeholder={'Search for location'} style={{ width: 'auto' }}/>
                 </Form>
               </Col>
               <Col>
-                <Nav.Link href={'/search'}>
+                <Button type={'submit'} onClick={handleSubmit}>
                   Search
-                </Nav.Link>
+                </Button>
               </Col>
             </Row>
 
