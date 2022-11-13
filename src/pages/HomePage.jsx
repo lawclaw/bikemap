@@ -5,8 +5,7 @@ import { Wrapper } from '@googlemaps/react-wrapper'
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 import axios from 'axios'
-import { useRecoilState } from 'recoil'
-import { mapLat, mapLng, searchedState, searchQuery } from '../recoil/states.js'
+import ReactHtmlParser from 'react-html-parser'; 
 
 const GOOGLE_API_KEY = import.meta.env.VITE_GOOGLE_API_KEY
 
@@ -16,35 +15,6 @@ function HomePage (props) {
   const [modalTitle, setModalTitle] = useState('')
   const [modalText, setModalText] = useState('')
   const handleModalClose = () => setShowModal(false)
-
-  const [search, setSearch] = useRecoilState(searchQuery)
-  const [searched, setSearched] = useRecoilState(searchedState)
-  const [lat, setLat] = useRecoilState(mapLat)
-  const [lng, setLng] = useRecoilState(mapLng)
-
-  useEffect(async () => {
-    const loadPositions = async () => {
-      if (searched) {
-        console.log(search)
-        axios({
-          method: 'get',
-          url: 'https://nominatim.openstreetmap.org/search?q=' + search + '&format=json'
-        })
-          .then(function (response) {
-            if (response.data[0]) {
-              setLat(response.data[0].lat * 1)
-              setLng(response.data[0].lon * 1)
-              setSearched(false)
-            } else {
-              setLat(51.757795855861815)
-              setLng(-1.2230595517611809)
-            }
-          })
-      }
-    }
-
-    loadPositions()
-  }, [searched])
 
   const handleModalShow = (title, desc) => {
     setModalTitle(title)
@@ -57,7 +27,7 @@ function HomePage (props) {
     const loadPositions = async () => {
       axios({
         method: 'get',
-        url: import.meta.env.VITE_BACKEND_LINK + '/read-pins'
+        url: import.meta.env.VITE_BACKEND_LINK+'/read-pins'
       })
         .then(function (response) {
           console.log(response.data.documents)
@@ -104,7 +74,7 @@ function HomePage (props) {
           <Modal.Header closeButton>
             <Modal.Title>{modalTitle}</Modal.Title>
           </Modal.Header>
-          <Modal.Body>{modalText}</Modal.Body>
+          <Modal.Body>{ReactHtmlParser(modalText)}</Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleModalClose}>
               Close

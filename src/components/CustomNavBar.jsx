@@ -13,7 +13,7 @@ function CustomNavBar (props) {
   }
 
   return (
-      <Navbar bg={'dark'} variant={'dark'}>
+      <Navbar variant={'dark'} style={{backgroundColor: "#03a7cc"}}>
           <Container>
           <Nav>
             <Row>
@@ -27,7 +27,7 @@ function CustomNavBar (props) {
               </Col>
               <Col me='auto' xs={'auto'}>
             <Nav.Link href={'/add'}>
-                Add marker
+                Add Caution
             </Nav.Link>
               </Col>
               <Col>
