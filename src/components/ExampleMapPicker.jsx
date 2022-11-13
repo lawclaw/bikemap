@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import MapPicker from 'react-google-map-picker'
+import { Form, Button, Row, Col } from 'react-bootstrap'
 
 const DefaultZoom = 10
 
-function ExampleMapPicker ({location, setLocation, DefaultLocation}) {
+function ExampleMapPicker ({ location, setLocation, DefaultLocation }) {
   const [defaultLocation, setDefaultLocation] = useState(DefaultLocation)
 
-  
   const [zoom, setZoom] = useState(DefaultZoom)
 
   function handleChangeLocation (lat, lng) {
@@ -23,21 +23,32 @@ function ExampleMapPicker ({location, setLocation, DefaultLocation}) {
   }
 
   return (
-        <>
-            <label>Latitude:</label>
-            <input type='text' value={location.lat} disabled/>
-            <label>Longitude:</label>
-            <input type='text' value={location.lng} disabled/>
-            <button onClick={handleResetLocation}>Reset Location</button>
-
-            <MapPicker defaultLocation={defaultLocation}
-                       zoom={zoom}
-                       mapTypeId="roadmap"
-                       style={{ height: '50vh' }}
-                       onChangeLocation={handleChangeLocation}
-                       onChangeZoom={handleChangeZoom}
-                       apiKey={import.meta.env.VITE_GOOGLE_API_KEY}/>
-        </>
+    <>
+      <Row>
+        <Col xs = "4" className="my-2">
+          <Form.Group>
+            <Form.Label>Latitude:</Form.Label>
+            <Form.Control type='text' value={location.lat} disabled/>
+          </Form.Group>
+        </Col>
+        <Col xs = "4" className="my-2">
+          <Form.Group>
+            <Form.Label>Longitude:</Form.Label>
+            <Form.Control type='text' value={location.lng} disabled/>
+          </Form.Group>
+        </Col>
+        <Col xs = "4" className="my-2" style={{alignItems: "center", display: "flex"}}>
+          <Button onClick={handleResetLocation}>Reset Location</Button>
+        </Col>
+      </Row>
+      <MapPicker defaultLocation={defaultLocation}
+        zoom={zoom}
+        mapTypeId="roadmap"
+        style={{ height: '50vh' }}
+        onChangeLocation={handleChangeLocation}
+        onChangeZoom={handleChangeZoom}
+        apiKey={import.meta.env.VITE_GOOGLE_API_KEY}/>
+    </>
   )
 }
 

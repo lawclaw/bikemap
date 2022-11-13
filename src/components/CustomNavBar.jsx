@@ -3,7 +3,7 @@ import { Container, Nav, Navbar } from 'react-bootstrap'
 
 function CustomNavBar (props) {
   return (
-      <Navbar bg={'dark'} variant={'dark'}>
+      <Navbar variant={'dark'} style={{backgroundColor: "#03a7cc"}}>
           <Container>
 
           <Nav>
@@ -12,7 +12,7 @@ function CustomNavBar (props) {
                 Home
             </Nav.Link>
             <Nav.Link href={'/add'}>
-                Add marker
+                Add Caution
             </Nav.Link>
             <Nav.Link href={'/search'}>
                 Search
