@@ -7,15 +7,15 @@ import CustomNavBar from './components/CustomNavBar.jsx'
 import { RecoilRoot } from 'recoil'
 function App () {
   return (
-      <RecoilRoot>
-          <CustomNavBar/>
-          <BrowserRouter>
-              <Routes>
-                  <Route path="/" element={<HomePage/>}/>
-                  <Route path="/add" element={<AddPage/>}/>
-              </Routes>
-          </BrowserRouter>
-      </RecoilRoot>
+    <RecoilRoot>
+      <CustomNavBar/>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<HomePage/>}/>
+          <Route path="/add" element={<AddPage/>}/>
+        </Routes>
+      </BrowserRouter>
+    </RecoilRoot>
   )
 }
 
